@@ -47,10 +47,16 @@ function createCurPayment() {
 function appendPaymentTable(curPayment) {
   let newTr = document.createElement('tr');
   newTr.id = 'payment' + paymentId;
+  let removeBtn=document.createElement('td');
+  removeBtn.innerText='X';
+  removeBtn.addEventListener('click',function() {
+    newTr.remove();
+  })
 
   appendTd(newTr, '$' + curPayment.billAmt);
   appendTd(newTr, '$' + curPayment.tipAmt);
   appendTd(newTr, curPayment.tipPercent + '%');
+  newTr.append(removeBtn)
 
   paymentTbody.append(newTr);
 }

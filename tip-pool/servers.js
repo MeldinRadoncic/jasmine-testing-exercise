@@ -9,7 +9,7 @@ let serverId = 0;
 serverForm.addEventListener('submit', submitServerInfo);
 
 function submitServerInfo(evt) {
-  if (evt) evt.preventDefault(); // when running tests there is no event
+  if (evt) evt.preventDefault(); 
 
   let serverName = serverNameInput.value;
 
@@ -31,12 +31,20 @@ function updateServerTable() {
 
     let newTr = document.createElement('tr');
     newTr.setAttribute('id', key);
+    let removeBtn=document.createElement('td');
+    removeBtn.innerText='X';
+
+    removeBtn.addEventListener('click',function() {
+     newTr.remove();   
+    });
 
     let tipAverage = sumPaymentTotal('tipAmt') / Object.keys(allServers).length;
 
     appendTd(newTr, curServer.serverName);
     appendTd(newTr, '$' + tipAverage.toFixed(2));
+    newTr.append(removeBtn);
 
     serverTbody.append(newTr);
+    
   }
 }
